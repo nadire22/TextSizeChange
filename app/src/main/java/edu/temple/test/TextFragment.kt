@@ -6,10 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModel
 
 class TextFragment : Fragment() {
 
     private lateinit var textView: TextView
+    private lateinit var FragmentViewModel : ViewModel
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

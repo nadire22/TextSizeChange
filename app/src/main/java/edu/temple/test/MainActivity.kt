@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
 import org.w3c.dom.Text
@@ -11,11 +14,14 @@ import org.w3c.dom.Text
 class MainActivity : AppCompatActivity(), SizeFragment.ValueChangeInterface {
 
     lateinit var textFragment: TextFragment
+    private lateinit var FragmentViewModel : ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        FragmentViewModel = ViewModelProvider(this)[FragmentViewModel::class.java]
 
         // Create and attach fragments if not already exist
         if (savedInstanceState == null) {

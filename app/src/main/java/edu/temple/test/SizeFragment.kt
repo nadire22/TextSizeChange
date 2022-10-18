@@ -7,8 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 
 class SizeFragment : Fragment() {
+
+    private lateinit var FragmentViewModel : ViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -16,14 +20,22 @@ class SizeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_size, container, false)
+
+        FragmentViewModel = ViewModelProvider(requireActivity())[FragmentViewModel::class.java]
     }
 
     interface ValueChangeInterface {
         fun onChange(value: Int)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+
+
 
         with (view.findViewById(R.id.seekBar) as SeekBar) {
             setOnSeekBarChangeListener(object: OnSeekBarChangeListener {
