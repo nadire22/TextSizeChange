@@ -8,7 +8,7 @@ class SizeViewModel: ViewModel() {
 
      private val size : MutableLiveData<Float> = MutableLiveData()
 
-    fun SetSize(size:Float){
+    fun setSize(size:Float){
         this.size.value = size
     }
 

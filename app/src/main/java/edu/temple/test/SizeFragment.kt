@@ -12,8 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 
 class SizeFragment : Fragment() {
 
-    private lateinit var FragmentViewModel : ViewModel
-
+    private lateinit var sizeViewModel : SizeViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,7 +20,7 @@ class SizeFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_size, container, false)
 
-        FragmentViewModel = ViewModelProvider(requireActivity())[FragmentViewModel::class.java]
+        sizeViewModel = ViewModelProvider(requireActivity())[SizeViewModel::class.java]
     }
 // we shuoldn't need this if we have a fully fixed viewModel
     interface ValueChangeInterface {
@@ -40,9 +39,8 @@ class SizeFragment : Fragment() {
         with (view.findViewById(R.id.seekBar) as SeekBar) {
             setOnSeekBarChangeListener(object: OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, user: Boolean) {
+                    sizeViewModel.setSize(progress.toFloat())
 
-                    // Inform parent about slider event with updated value
-                    (requireActivity() as ValueChangeInterface).onChange(progress)
                 }
                 override fun onStartTrackingTouch(p0: SeekBar?) {}
                 override fun onStopTrackingTouch(p0: SeekBar?) {}
