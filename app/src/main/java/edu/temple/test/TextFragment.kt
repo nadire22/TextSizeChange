@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 
 class TextFragment : Fragment() {
 
     private lateinit var textView: TextView
-    private lateinit var FragmentViewModel : ViewModel
+    private lateinit var sizeViewModel : SizeViewModel
 
 
 
@@ -23,14 +24,16 @@ class TextFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_text, container, false).apply {
             textView = findViewById(R.id.textView)
+            sizeViewModel = ViewModelProvider(requireActivity())[SizeViewModel::class.java]
+           sizeViewModel.getSize().observe()
         }
     }
 
     fun changeTextSize (size: Float) {
 
-        // Only perform update if textView is previously initialized
-        if (::textView.isInitialized)
-            textView.textSize = size
+        sizeViewModel.getSize().observe(requireActivity()) {
+            changeTextSize(it)
+        }
     }
 
 }
