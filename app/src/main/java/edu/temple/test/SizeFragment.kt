@@ -23,7 +23,7 @@ class SizeFragment : Fragment() {
 
         FragmentViewModel = ViewModelProvider(requireActivity())[FragmentViewModel::class.java]
     }
-
+// we shuoldn't need this if we have a fully fixed viewModel
     interface ValueChangeInterface {
         fun onChange(value: Int)
 
